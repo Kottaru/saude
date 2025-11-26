@@ -1,0 +1,23 @@
+const checkboxes = document.querySelectorAll("input[type=checkbox]");
+const statusEl = document.getElementById("status");
+const resetBtn = document.getElementById("reset");
+
+function updateStatus() {
+  let checked = 0;
+  checkboxes.forEach(cb => {
+    if (cb.checked) checked++;
+  });
+  statusEl.textContent = `Progresso: ${checked}/5 hábitos`;
+}
+
+checkboxes.forEach(cb => {
+  cb.addEventListener("change", updateStatus);
+});
+
+resetBtn.addEventListener("click", () => {
+  checkboxes.forEach(cb => cb.checked = false);
+  updateStatus();
+});
+
+// inicia com progresso zerado
+updateStatus();
